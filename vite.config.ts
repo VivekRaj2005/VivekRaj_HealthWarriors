@@ -1,8 +1,17 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import wasm from 'vite-plugin-wasm';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import wasm from "vite-plugin-wasm";
+import topLevelAwait from "vite-plugin-top-level-await";
 
+const worker: any = {
+  plugins: [
+    wasm(),
+    topLevelAwait()
+  ]
+
+}
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), wasm()],
-})
+  plugins: [react(), topLevelAwait(), wasm()],
+  worker: worker
+});

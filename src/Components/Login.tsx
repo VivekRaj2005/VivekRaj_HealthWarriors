@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import "./Login.css";
-import { Alert, CircularProgress, colors } from "@mui/material";
+import { Alert, CircularProgress } from "@mui/material";
 import { sleep } from "../Utils/Time";
+import { doc, getDoc } from "firebase/firestore";
+import firebase from "../Service/firebase";
 
 function Login({
   loggedIn,
@@ -10,9 +12,53 @@ function Login({
   loggedIn: boolean;
   setloggedIn: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
+  const [Aadhar, setAadhar] = useState<string>("");
+  const [OTPMode, setOTPMode] = useState<boolean>(false);
+  const [otpRandom, setOtpRandom] = useState<string | null>(null);
   const [Loading, setLoading] = useState<boolean>(false);
+  const [firebaseDoc, setFirebaseDoc] = useState<any>(null);
   const [LoadingFail, setLoadingFail] = useState<boolean>(false);
   const [OTP, setOTP] = useState<string>("");
+
+  function sendOTP() {
+    setLoading(true);
+    getDoc(doc(firebase.store, "ID", Aadhar)).then((doc) => {
+        console.log(doc.exists())
+      if (!doc.exists()) {
+        setLoading(false);
+        setLoadingFail(true);
+      } else {
+        const docData = doc.data();
+        const otp = Math.floor(Math.random() * 10000).toString();
+        setFirebaseDoc(doc.data());
+        setOtpRandom(otp);
+
+        const Data: any = {
+          name: docData.Name,
+          email: docData.Email,
+          otp: otp,
+        };
+
+        var form_data = new FormData();
+
+        for (var key in Data) {
+          form_data.append(key, Data[key]);
+        }
+
+        fetch(
+          "https://script.google.com/macros/s/AKfycbwbRlijjYlbKbgxji_JOr3HS3QnThOvsqdjMMffkbwvRcuYUuEBNu6Q3n01srK1GQ-m/exec",
+          {
+            method: "POST",
+            body: form_data,
+            mode: "no-cors",
+          }
+        ).then(() => {
+          setOTPMode(true);
+          setLoading(false);
+        });
+      }
+    });
+  }
 
   useEffect(() => {
     if (loggedIn) {
@@ -65,36 +111,46 @@ function Login({
                 Aadhar Card Number
               </label>
               <input
+                value={Aadhar}
+                onChange={(e) => {
+                  if (Number(e.target.value)) setAadhar(e.target.value);
+                }}
                 type="text"
                 id="full-name"
                 name="full-name"
                 className="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-purple-900 rounded border border-gray-600 focus:border-purple-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
               />
             </div>
-            <div className="relative mb-4">
-              <label
-                htmlFor="email"
-                className="leading-7 text-sm text-gray-400"
-              >
-                OTP
-              </label>
-              <input
-                type="password"
-                id="email"
-                name="email"
-                value={OTP}
-                onChange={(event) => {
-                  setOTP(event.target.value);
-                }}
-                className="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-purple-900 rounded border border-gray-600 focus:border-purple-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-              />
-            </div>
+            {OTPMode && (
+              <div className="relative mb-4">
+                <label
+                  htmlFor="email"
+                  className="leading-7 text-sm text-gray-400"
+                >
+                  OTP
+                </label>
+                <input
+                  type="password"
+                  id="email"
+                  name="email"
+                  value={OTP}
+                  onChange={(event) => {
+                    setOTP(event.target.value);
+                  }}
+                  className="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-purple-900 rounded border border-gray-600 focus:border-purple-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                />
+              </div>
+            )}
             <button
               className="text-white bg-purple-500 border-0 py-2 px-8 focus:outline-none hover:bg-purple-600 rounded text-lg w-full"
-              onClick={login}
+              onClick={sendOTP}
             >
               {!Loading ? (
-                "Login"
+                OTPMode ? (
+                  "Send OTP"
+                ) : (
+                  "Login"
+                )
               ) : (
                 <CircularProgress size={30} style={{ color: "white" }} />
               )}
