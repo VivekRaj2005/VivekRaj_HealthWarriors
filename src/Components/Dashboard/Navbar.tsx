@@ -1,14 +1,18 @@
 import "./Navbar.css";
 import Logo from "../../assets/Logo.png";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const navigate = useNavigate();
   return (
     <header className="bg-white">
       <div className="container mx-auto px-4 py-8 flex items-center">
         {/* <!-- logo --> */}
         <div className="mr-auto md:w-48 flex-shrink-0 flex">
           <img className="h-8 md:h-10" src={Logo} alt="" />
-          <h4 className="flex flex-col justify-center font-bold">Health Warriors</h4>
+          <h4 className="flex flex-col justify-center font-bold">
+            Health Warriors
+          </h4>
         </div>
 
         {/* <!-- search --> */}
@@ -17,10 +21,13 @@ function Navbar() {
             className="bg-transparent uppercase font-bold text-sm p-4 mr-4"
             name=""
             id=""
+            onChange={(e) => {
+              navigate("/patient" + e.target.value);
+            }}
           >
-            <option>Home</option>
-            <option>Records</option>
-            <option>Fix Appointment</option>
+            <option value={""}>Home</option>
+            <option value={"/records"}>Records</option>
+            <option value={"/appointment"}>Fix Appointment</option>
           </select>
           <input
             className="border-l border-gray-300 bg-transparent font-semibold text-sm pl-4 w-full "
@@ -80,7 +87,7 @@ function Navbar() {
         {/* <!-- cart count --> */}
         <div className="ml-4 hidden sm:flex flex-col font-bold">
           <span className="text-xs text-gray-400">Vivek Raj</span>
-          <span>2586-8853-3066</span>
+          <span>2586-8321-3066</span>
         </div>
       </div>
 

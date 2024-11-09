@@ -1,13 +1,16 @@
-function Contents() {
+import userPng from "../../assets/User.png";
+
+function Contents(user: any) {
+  const myuser = user.user.user;
   return (
     <>
       <section className="text-gray-600 body-font px-0 lg:px-10 ">
         <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
           <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
             <img
-              className="object-cover object-center rounded"
+              className="object-cover object-center rounded h-[425px]"
               alt="hero"
-              src="https://dummyimage.com/720x600"
+              src={userPng}
             />
           </div>
           <section className="text-gray-400 bg-gray-900 body-font overflow-hidden w-full h-full">
@@ -18,35 +21,29 @@ function Contents() {
                     ACCOUNT CENTER
                   </h2>
                   <h1 className="text-white text-5xl title-font font-medium mb-4 w-full">
-                    Vivek Raj
+                    {myuser.Name}
                   </h1>
                   <div className="flex border-t border-gray-800 py-2">
                     <span className="text-gray-500">Phone Number</span>
-                    <span className="ml-auto text-white">+91 7012060999</span>
+                    <span className="ml-auto text-white">{myuser.Phone}</span>
                   </div>
                   <div className="flex border-t border-gray-800 py-2">
                     <span className="text-gray-500">Email</span>
-                    <span className="ml-auto text-white">
-                      vivek23ir09@gmail.com
-                    </span>
+                    <span className="ml-auto text-white">{myuser.Email}</span>
                   </div>
                   <div className="flex border-t border-gray-800 py-2">
                     <span className="text-gray-500">Residency</span>
                     <span className="ml-auto text-white">
-                      IIT Gandhinagar
+                      {myuser.Residance}
                     </span>
                   </div>
                   <div className="flex border-t border-gray-800 py-2">
                     <span className="text-gray-500">DOB</span>
-                    <span className="ml-auto text-white">
-                      27th Aug 2005
-                    </span>
+                    <span className="ml-auto text-white">{myuser.DOB}</span>
                   </div>
                   <div className="flex border-t border-gray-800 py-2">
                     <span className="text-gray-500">Gender</span>
-                    <span className="ml-auto text-white">
-                      Male
-                    </span>
+                    <span className="ml-auto text-white">{myuser.Gender}</span>
                   </div>
                 </div>
               </div>
@@ -54,7 +51,6 @@ function Contents() {
           </section>
         </div>
       </section>
-
     </>
   );
 }

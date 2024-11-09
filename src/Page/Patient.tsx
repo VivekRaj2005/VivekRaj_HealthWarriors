@@ -11,7 +11,7 @@ function Patient(user: {user: any}) {
     }, [])
     
   return (
-    <Outlet />
+    <Outlet context={user}/>
   )
 }
 

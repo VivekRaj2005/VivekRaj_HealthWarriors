@@ -1,8 +1,9 @@
 import logo from "../assets/Logo.png";
 import "./Navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function NavBar() {
+  const navigate = useNavigate();
   return (
     <header className="text-gray-400 bg-gray-900 body-font">
       <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
@@ -24,7 +25,12 @@ function NavBar() {
           </Link>
           <a className="mr-5 hover:text-white">Gallery</a>
         </nav>
-        <button className="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0">
+        <button
+          className="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
           Login
           <svg
             fill="none"
@@ -38,7 +44,12 @@ function NavBar() {
             <path d="M5 12h14M12 5l7 7-7 7"></path>
           </svg>
         </button>
-        <button className="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0 ml-5">
+        <button
+          className="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0 ml-5"
+          onClick={() => {
+            navigate("/chat");
+          }}
+        >
           Talk to Chatbot
           <svg
             fill="none"

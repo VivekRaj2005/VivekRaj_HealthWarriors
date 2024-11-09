@@ -1,3 +1,4 @@
+// import Chat from "../Components/Dashboard/Chat";
 import Footer from "../Components/Footer";
 import Login from "../Components/Login";
 import Navbar from "../Components/Navbar";
@@ -20,6 +21,7 @@ function Home({
         setUserData={setUserData}
       />
       <Footer />
+      {/* <Chat /> */}
     </>
   );
 }

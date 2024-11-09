@@ -2,9 +2,12 @@ import React from "react";
 
 function RecordsTable({
   setRecord,
+  Records,
 }: {
+  Records: Array<any>;
   setRecord: React.Dispatch<React.SetStateAction<number | null>>;
 }) {
+    console.log(Records)
   return (
     <section className="text-gray-600 body-font">
       <div className="container px-5 py-24 mx-auto">
@@ -32,75 +35,28 @@ function RecordsTable({
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td className="px-4 py-3">#09112024001</td>
-                <td className="px-4 py-3">09 December 2024</td>
-                <td className="px-4 py-3">Lifeline Clinic and Laboratories</td>
-                <td className="px-4 py-3 text-gray-900">
-                  <a
-                    href="#"
-                    className="color-blue"
-                    style={{ textDecoration: "underline" }}
-                    onClick={(event) => {
-                      event.preventDefault();
-                    }}
-                  >
-                    View Data
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3">#09112024001</td>
-                <td className="px-4 py-3">09 December 2024</td>
-                <td className="px-4 py-3">Lifeline Clinic and Laboratories</td>
-                <td className="px-4 py-3 text-gray-900">
-                  <a
-                    href="#"
-                    className="color-blue"
-                    style={{ textDecoration: "underline" }}
-                    onClick={(event) => {
-                      event.preventDefault();
-                    }}
-                  >
-                    View Data
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3">#09112024001</td>
-                <td className="px-4 py-3">09 December 2024</td>
-                <td className="px-4 py-3">Lifeline Clinic and Laboratories</td>
-                <td className="px-4 py-3 text-gray-900">
-                  <a
-                    href="#"
-                    className="color-blue"
-                    style={{ textDecoration: "underline" }}
-                    onClick={(event) => {
-                      event.preventDefault();
-                      setRecord(91120240001);
-                    }}
-                  >
-                    View Data
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3">#09112024001</td>
-                <td className="px-4 py-3">09 December 2024</td>
-                <td className="px-4 py-3">Lifeline Clinic and Laboratories</td>
-                <td className="px-4 py-3 text-gray-900">
-                  <a
-                    href="#"
-                    onClick={(event) => {
-                      event.preventDefault();
-                    }}
-                    className="color-blue"
-                    style={{ textDecoration: "underline" }}
-                  >
-                    View Data
-                  </a>
-                </td>
-              </tr>
+              {Records.map((Record: any, key: number) => {
+                return (
+                  <tr key={key}>
+                    <td className="px-4 py-3">#{Record.id}</td>
+                    <td className="px-4 py-3">{Record.Date}</td>
+                    <td className="px-4 py-3">{Record.Lab}</td>
+                    <td className="px-4 py-3 text-gray-900">
+                      <a
+                        href="#"
+                        className="color-blue"
+                        style={{ textDecoration: "underline" }}
+                        onClick={(event) => {
+                          event.preventDefault();
+                          setRecord(Record)
+                        }}
+                      >
+                        View Data
+                      </a>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

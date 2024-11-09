@@ -34,7 +34,7 @@ function Login({
         setLoadingFail(false);
         const docData = doc.data();
         const otp = Math.floor(Math.random() * 10000).toString();
-        setFirebaseDoc(doc.data());
+        setFirebaseDoc(Object.assign({}, doc.data(), {Aadhar: Aadhar}));
         setOtpRandom(otp);
 
         const Data: any = {

@@ -7,6 +7,7 @@ import Records from "./Components/Dashboard/Records";
 import Appointment from "./Components/Dashboard/Appointment";
 import NewRecord from "./Components/Dashboard/NewRecord";
 import Terms from "./Page/Terms";
+import Chat from "./Components/Dashboard/Chat";
 
 function Router() {
   const [LoggedIn, setLoggedIn] = useState<boolean>(false);
@@ -16,9 +17,16 @@ function Router() {
       <Routes>
         <Route
           index
-          element={<Home loggedIn={LoggedIn} setloggedIn={setLoggedIn} setUserData={setUserData}  />}
+          element={
+            <Home
+              loggedIn={LoggedIn}
+              setloggedIn={setLoggedIn}
+              setUserData={setUserData}
+            />
+          }
         />
         <Route path="/terms" element={<Terms />} />
+        <Route path="/chat" element={<Chat />} />
 
         <Route path="/patient" element={<Patient user={userData} />}>
           <Route index element={<PatientHome />} />

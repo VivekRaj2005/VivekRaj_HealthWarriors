@@ -1,4 +1,5 @@
-function ViewRecord(props: { record: number; setRecord: Function }) {
+function ViewRecord(props: { record: any; setRecord: Function }) {
+  console.log(props.record.Data);
   return (
     <section className="py-1 bg-blueGray-50">
       <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4 mx-auto mt-24">
@@ -7,7 +8,7 @@ function ViewRecord(props: { record: number; setRecord: Function }) {
             <div className="flex flex-wrap items-center">
               <div className="relative w-full px-4 max-w-full flex-grow flex-1">
                 <h3 className="font-semibold text-base text-blueGray-700">
-                  Viewing Record: {props.record}
+                  Viewing Record: {props.record.id}
                 </h3>
               </div>
               <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
@@ -42,81 +43,59 @@ function ViewRecord(props: { record: number; setRecord: Function }) {
               </thead>
 
               <tbody>
-                <tr>
-                  <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700 ">
-                    Fasting Blood Sugar (FBS)
-                  </th>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
-                    100 mg/dL
-                  </td>
-                  <td className="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    40 - 96 mg/dl
-                  </td>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    <i className="fas fa-arrow-up text-red-500 mr-4"></i>
-                    104.7%
-                  </td>
-                </tr>
-                <tr>
-                  <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700">
-                    Low Density Lipoprotein (LDL)
-                  </th>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    150 mg/dL
-                  </td>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    &lt; 130 mg/dL
-                  </td>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    <i className="fas fa-arrow-up text-red-500 mr-4"></i>
-                    115%
-                  </td>
-                </tr>
-                <tr>
-                  <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700">
-                    High Density Lipoprotein (HDL)
-                  </th>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    20 mg/dL
-                  </td>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    &gt; 40 mg/dL
-                  </td>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    <i className="fas fa-arrow-down text-red-500 mr-4"></i>
-                    50%
-                  </td>
-                </tr>
-                <tr>
-                  <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700">
-                    Sodium
-                  </th>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    140 mEq/L
-                  </td>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    135 mEq/L to 145 mEq/L
-                  </td>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    <i className="fas fa-arrow-up text-emerald-500 mr-4"></i>
-                    Good
-                  </td>
-                </tr>
-                <tr>
-                  <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700">
-                    Pottasium
-                  </th>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    4 mEq/L
-                  </td>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    2.5 to 6.5 mEq/L
-                  </td>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    <i className="fas fa-arrow-up text-green-500 mr-4"></i>
-                    Good
-                  </td>
-                </tr>
+                {props.record.Data.map((data: any, key: number) => {
+                  return (
+                    <tr key={key}>
+                      <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700 ">
+                        {data.Name}
+                      </th>
+                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
+                        {data.Value}
+                      </td>
+                      <td className="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                        {data.HR ? (
+                          data.LR ? (
+                            <>
+                              {data.LR} - {data.HR}
+                            </>
+                          ) : (
+                            <>&lt;{data.HR}</>
+                          )
+                        ) : (
+                          <>&gt;{data.LR}</>
+                        )}
+                      </td>
+                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                        <i
+                          className={`fas fa-arrow-up text-${
+                            data.HR
+                              ? data.LR
+                                ? data.Value < data.HR && data.Value > data.LR
+                                  ? "green"
+                                  : "red"
+                                : data.Value < data.HR
+                                ? "green"
+                                : "red"
+                              : data.Value > data.LR
+                              ? "green"
+                              : "red"
+                          }-500 mr-4`}
+                        ></i>
+                        {data.HR
+                          ? data.LR
+                            ? data.Value < data.HR && data.Value > data.LR
+                              ? "Good"
+                              : "Poor"
+                            : data.Value < data.HR
+                            ? "Good"
+                            : "Poor"
+                          : data.Value > data.LR
+                          ? "Good"
+                          : "Poor"}
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
