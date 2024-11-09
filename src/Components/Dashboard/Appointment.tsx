@@ -2,6 +2,7 @@ import Navbar from "./Navbar";
 import DrRajesh from "../../assets/Dr Rajesh.jpeg";
 import DrLwanya from "../../assets/Lawanya.jpg";
 import DrAbin from "../../assets/DRABIN J JOHNS.jpg";
+import DrSharvari from '../../assets/Sharvari.jpg'
 
 function Appointment() {
   return (
@@ -28,8 +29,8 @@ function Appointment() {
                 <img
                   alt="team"
                   className="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4"
-                  src="https://dummyimage.com/200x200"
-                />
+                  src={DrSharvari}
+                />  
                 <div className="flex-grow sm:pl-8">
                   <h2 className="title-font font-medium text-lg text-gray-900 ">
                     Dr. Sharvari Mirge

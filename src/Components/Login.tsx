@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
 import "./Login.css";
 import { Alert, CircularProgress } from "@mui/material";
-import { sleep } from "../Utils/Time";
 import { doc, getDoc } from "firebase/firestore";
 import firebase from "../Service/firebase";
+import { useNavigate } from "react-router-dom";
 
 function Login({
   loggedIn,
   setloggedIn,
+  setUserData,
 }: {
   loggedIn: boolean;
   setloggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+  setUserData: React.Dispatch<React.SetStateAction<any>>;
 }) {
   const [Aadhar, setAadhar] = useState<string>("");
   const [OTPMode, setOTPMode] = useState<boolean>(false);
@@ -19,15 +21,17 @@ function Login({
   const [firebaseDoc, setFirebaseDoc] = useState<any>(null);
   const [LoadingFail, setLoadingFail] = useState<boolean>(false);
   const [OTP, setOTP] = useState<string>("");
+  const navigate = useNavigate();
 
   function sendOTP() {
     setLoading(true);
     getDoc(doc(firebase.store, "ID", Aadhar)).then((doc) => {
-        console.log(doc.exists())
+      console.log(doc.exists());
       if (!doc.exists()) {
         setLoading(false);
         setLoadingFail(true);
       } else {
+        setLoadingFail(false);
         const docData = doc.data();
         const otp = Math.floor(Math.random() * 10000).toString();
         setFirebaseDoc(doc.data());
@@ -60,22 +64,20 @@ function Login({
     });
   }
 
+  const Login = () => {
+    if (OTP === otpRandom) {
+      setUserData(firebaseDoc);
+      setloggedIn(true);
+      navigate("/patient");
+    } else {
+      setLoadingFail(true);
+    }
+  };
+
   useEffect(() => {
     if (loggedIn) {
     }
   });
-
-  function login() {
-    setLoading(true);
-    sleep(5000).then(() => {
-      setLoading(false);
-      if (OTP === "12345") {
-        setLoadingFail(false);
-      } else {
-        setLoadingFail(true);
-      }
-    });
-  }
 
   return (
     <section className="text-black body-font px-0 lg:px-10">
@@ -143,10 +145,10 @@ function Login({
             )}
             <button
               className="text-white bg-purple-500 border-0 py-2 px-8 focus:outline-none hover:bg-purple-600 rounded text-lg w-full"
-              onClick={sendOTP}
+              onClick={!OTPMode ? sendOTP : Login}
             >
               {!Loading ? (
-                OTPMode ? (
+                !OTPMode ? (
                   "Send OTP"
                 ) : (
                   "Login"
