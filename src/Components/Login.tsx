@@ -1,6 +1,21 @@
-import "./Login.scss";
+import { useEffect, useState } from "react";
+import "./Login.css";
+import { CircularProgress } from "@mui/material";
 
-function Login() {
+function Login({
+  loggedIn,
+  setloggedIn,
+}: {
+  loggedIn: boolean;
+  setloggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
+  const [Loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (loggedIn) {
+    }
+  });
+
   return (
     <section className="text-black body-font px-0 lg:px-10">
       <div className="container px-5 py-24 mx-auto flex flex-wrap items-center">
@@ -44,12 +59,16 @@ function Login() {
               className="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-purple-900 rounded border border-gray-600 focus:border-purple-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
             />
           </div>
-          <button className="text-white bg-purple-500 border-0 py-2 px-8 focus:outline-none hover:bg-purple-600 rounded text-lg">
-            Login
+          <button
+            className="text-white bg-purple-500 border-0 py-2 px-8 focus:outline-none hover:bg-purple-600 rounded text-lg"
+            onClick={() => setLoading(true)}
+          >
+            {!Loading ? "Login" : <CircularProgress />}
           </button>
           <p className="text-xs mt-3 text-gray-400">
             By clicking Login, you automatically agree to our{" "}
-            <a style={{textDecoration: "underline"}}>Terms and Conditions</a> of the software.
+            <a style={{ textDecoration: "underline" }}>Terms and Conditions</a>{" "}
+            of the software.
           </p>
         </div>
       </div>

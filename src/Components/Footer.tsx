@@ -53,9 +53,9 @@ function Footer() {
           </div>
         </div>
       </div>
-      <div className="bg-gray-800 bg-opacity-75">
+      <div className="bg-gray-800">
         <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
-          <p className="text-gray-400 text-sm text-center sm:text-left">
+          <p className="text-white text-sm text-center sm:text-left">
             © 2020 Tailblocks —
             <a
               href="https://twitter.com/knyttneve"
