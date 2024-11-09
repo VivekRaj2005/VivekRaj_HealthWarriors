@@ -1,0 +1,6 @@
+symptoms,recommended_action,symptoms_encoded,recommended_action_encoded
+Cuts and scrapes,"Clean the wound, apply antiseptic, and cover with a bandage.",1,1
+Burns,"Cool the burn with running water, apply aloe vera gel.",0,2
+Sprains,"Rest, ice, compress, and elevate the ankle.",4,4
+Fractures,"Immobilize the affected area, avoid moving the bone.",2,3
+Insect bites,"Clean the area, apply an anti-itch cream, and cover with a bandage.",3,0
