@@ -1,6 +1,15 @@
+import { useState } from "react";
 import Navbar from "./Navbar";
 
 function NewRecord() {
+  const [data, setdata] = useState([
+    {
+      Name: "",
+      Value: "",
+      LR: "",
+      HR: "",
+    },
+  ]);
   return (
     <>
       <Navbar />
@@ -26,22 +35,67 @@ function NewRecord() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td className="px-4 py-3">
-                  <select className="w-full p-2">
-                    <option value={"FBS"}>FBS</option>
-                    <option value={"LDL"}>LDL</option>
-                    <option value={"HDL"}>HDL</option>
-                    <option value={"Na"}>Sodium</option>
-                    <option value={"K"}>Pottasium</option>
-                  </select>
-                </td>
-                <td className="px-4 py-3 flex">
-                  <input type="text" className="w-full p-2 mr-5" />{" "}
-                  <p className="py-2">mEq/L</p>
-                </td>
-                <td className="px-4 py-3">130mg/dL</td>
-              </tr>
+              {data.map((d, key) => {
+                return (
+                  <tr>
+                    <td className="px-4 py-3">
+                      <input
+                        type="text"
+                        className="w-full p-2 mr-5"
+                        value={data[key].Name}
+                        onChange={(event) => {
+                          const value = event.target.value;
+                          const newData = data;
+                          newData[key].Name = value;
+                          setdata(newData);
+                          console.log(newData)
+                        }}
+                      />{" "}
+                    </td>
+                    <td className="px-4 py-3">
+                      <input
+                        type="text"
+                        className="w-full p-2 mr-5"
+                        value={data[key].Value}
+                        onChange={(event) => {
+                          const value = event.target.value;
+                          if (!Number(value)) return;
+                          const newData = data;
+                          newData[key].Value = value;
+                          setdata(newData);
+                        }}
+                      />{" "}
+                    </td>
+                    <td className="px-4 py-3 flex">
+                      <input
+                        type="text"
+                        className="w-1/3 p-2 mr-5"
+                        value={data[key].LR}
+                        onChange={(event) => {
+                          const value = event.target.value;
+                          if (!Number(value)) return;
+                          const newData = data;
+                          newData[key].LR = value;
+                          setdata(newData);
+                        }}
+                      />{" "}
+                      <p>To</p>
+                      <input
+                        type="text"
+                        className="w-1/3 p-2 mx-5"
+                        value={data[key].HR}
+                        onChange={(event) => {
+                          const value = event.target.value;
+                          if (!Number(value)) return;
+                          const newData = data;
+                          newData[key].HR = value;
+                          setdata(newData);
+                        }}
+                      />{" "}
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
           <div className="flex pl-4 mt-4 w-full mx-auto">

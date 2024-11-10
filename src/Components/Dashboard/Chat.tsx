@@ -33,11 +33,12 @@ function Chat() {
     newChats.push(newChat);
     setChats(newChats);
     console.log(newChats);
+    settext("");
   }
 
   function GetChat() {
     AddChat(text, false);
-    settext("");
+
     PromiseToJSON(
       fetch("http://127.0.0.1:5000/api/chat", {
         method: "POST",
@@ -58,13 +59,16 @@ function Chat() {
       <section className="text-gray-600 body-font overflow-hidden">
         <div className="container px-5 py-5 mx-auto">
           <div className="flex flex-wrap -m-4">
-            <div className="p-4 xl:w-1/4 md:w-1/2 w-full">
             <div
+              className="p-4 xl:w-1/4 md:w-1/2 w-full"
+              onClick={() => setLang("1")}
+            >
+              <div
                 className={`h-full p-6 rounded-lg border-2 border-${
-                  lang === "4" ? "indigo" : "grey"
+                  lang === "1" ? "indigo" : "grey"
                 }-500 flex flex-col relative overflow-hidden`}
               >
-                {lang === "4" ? (
+                {lang === "1" ? (
                   <span className="bg-indigo-500 text-white px-3 py-1 tracking-widest text-xs absolute right-0 top-0 rounded-bl">
                     Selected
                   </span>
@@ -79,12 +83,12 @@ function Chat() {
                 </h1>
                 <button
                   className={`flex items-center mt-auto text-white bg-${
-                    lang === "4" ? "indigo" : "grey"
+                    lang === "1" ? "indigo" : "grey"
                   }-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-${
-                    lang === "4" ? "indigo" : "grey"
+                    lang === "1" ? "indigo" : "grey"
                   }-600 rounded`}
                 >
-                  {lang === "4" ? "Selected" : "Select"}
+                  {lang === "1" ? "Selected" : "Select"}
                   <svg
                     fill="none"
                     stroke="currentColor"
@@ -97,10 +101,12 @@ function Chat() {
                     <path d="M5 12h14M12 5l7 7-7 7"></path>
                   </svg>
                 </button>
-             
               </div>
             </div>
-            <div className="p-4 xl:w-1/4 md:w-1/2 w-full">
+            <div
+              className="p-4 xl:w-1/4 md:w-1/2 w-full"
+              onClick={() => setLang("4")}
+            >
               <div
                 className={`h-full p-6 rounded-lg border-2 border-${
                   lang === "4" ? "indigo" : "grey"
@@ -141,17 +147,36 @@ function Chat() {
                 </button>
               </div>
             </div>
-            <div className="p-4 xl:w-1/4 md:w-1/2 w-full">
-              <div className="h-full p-6 rounded-lg border-2 border-gray-300 flex flex-col relative overflow-hidden">
+            <div
+              className="p-4 xl:w-1/4 md:w-1/2 w-full"
+              onClick={() => setLang("2")}
+            >
+              <div
+                className={`h-full p-6 rounded-lg border-2 border-${
+                  lang === "2" ? "indigo" : "grey"
+                }-500 flex flex-col relative overflow-hidden`}
+              >
+                {lang === "2" ? (
+                  <span className="bg-indigo-500 text-white px-3 py-1 tracking-widest text-xs absolute right-0 top-0 rounded-bl">
+                    Selected
+                  </span>
+                ) : (
+                  <></>
+                )}{" "}
                 <h2 className="text-sm tracking-widest title-font mb-1 font-medium">
                   Language 3
                 </h2>
                 <h1 className="text-5xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200">
                   मराठी
                 </h1>
-
-                <button className="flex items-center mt-auto text-white bg-gray-400 border-0 py-2 px-4 w-full focus:outline-none hover:bg-gray-500 rounded">
-                  Select
+                <button
+                  className={`flex items-center mt-auto text-white bg-${
+                    lang === "2" ? "indigo" : "grey"
+                  }-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-${
+                    lang === "2" ? "indigo" : "grey"
+                  }-600 rounded`}
+                >
+                  {lang === "2" ? "Selected" : "Select"}
                   <svg
                     fill="none"
                     stroke="currentColor"
@@ -164,21 +189,38 @@ function Chat() {
                     <path d="M5 12h14M12 5l7 7-7 7"></path>
                   </svg>
                 </button>
-                <p className="text-xs text-gray-500 mt-3">
-                  Literally you probably haven't heard of them jean shorts.
-                </p>
               </div>
             </div>
-            <div className="p-4 xl:w-1/4 md:w-1/2 w-full">
-              <div className="h-full p-6 rounded-lg border-2 border-gray-300 flex flex-col relative overflow-hidden">
+            <div
+              className="p-4 xl:w-1/4 md:w-1/2 w-full"
+              onClick={() => setLang("3")}
+            >
+              <div
+                className={`h-full p-6 rounded-lg border-2 border-${
+                  lang === "3" ? "indigo" : "grey"
+                }-500 flex flex-col relative overflow-hidden`}
+              >
+                {lang === "3" ? (
+                  <span className="bg-indigo-500 text-white px-3 py-1 tracking-widest text-xs absolute right-0 top-0 rounded-bl">
+                    Selected
+                  </span>
+                ) : (
+                  <></>
+                )}
                 <h2 className="text-sm tracking-widest title-font mb-1 font-medium">
                   Language 4
                 </h2>
                 <h1 className="text-5xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200">
                   हिन्दी
                 </h1>
-                <button className="flex items-center mt-auto text-white bg-gray-400 border-0 py-2 px-4 w-full focus:outline-none hover:bg-gray-500 rounded">
-                  Select
+                <button
+                  className={`flex items-center mt-auto text-white bg-${
+                    lang === "3" ? "indigo-500" : "grey-300"
+                  } border-0 py-2 px-4 w-full focus:outline-none hover:bg-${
+                    lang === "3" ? "indigo-600" : "grey-400"
+                  } rounded`}
+                >
+                  {lang === "3" ? "Selected" : "Select"}
                   <svg
                     fill="none"
                     stroke="currentColor"
@@ -191,9 +233,6 @@ function Chat() {
                     <path d="M5 12h14M12 5l7 7-7 7"></path>
                   </svg>
                 </button>
-                <p className="text-xs text-gray-500 mt-3">
-                  Literally you probably haven't heard of them jean shorts.
-                </p>
               </div>
             </div>
           </div>

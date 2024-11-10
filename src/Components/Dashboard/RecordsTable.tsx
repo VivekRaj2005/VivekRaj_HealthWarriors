@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function RecordsTable({
   setRecord,
@@ -7,7 +8,7 @@ function RecordsTable({
   Records: Array<any>;
   setRecord: React.Dispatch<React.SetStateAction<number | null>>;
 }) {
-    console.log(Records)
+    const navigate = useNavigate();
   return (
     <section className="text-gray-600 body-font">
       <div className="container px-5 py-24 mx-auto">
@@ -60,12 +61,12 @@ function RecordsTable({
             </tbody>
           </table>
         </div>
-        <div className="flex pl-4 mt-4 lg:w-2/3 w-full mx-auto">
-          <button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+        {/* <div className="flex pl-4 mt-4 lg:w-2/3 w-full mx-auto">
+          <button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded" onClick={() => navigate("/patient/new")}>
             <i className="bi bi-plus-circle mr-5"></i>
             Add New
           </button>
-        </div>
+        </div> */}
       </div>
     </section>
   );
