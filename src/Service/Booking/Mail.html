@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+    <style>
+      * {
+        font-family: "Poppins", sans-serif;
+      }
+      img {
+        padding-top: 30px;
+      }
+      .logo {
+        height: 100px;
+        width: 100px;
+      }
+      .container {
+        /* display: -webkit-flex; */
+        justify-content: center;
+      }
+      h3,
+      h5 {
+        padding: 0px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+      .huge-container {
+        width: 693px;
+        border: 1px solid black;
+        margin: auto;
+        height: 735px;
+      }
+      .content {
+        margin: auto 20px;
+      }
+      .detail {
+        /* display: -webkit-flex; */
+        width: 70%;
+        justify-content: space-between;
+        align-items: center;
+        margin-left: 80px;
+      }
+      .details {
+        /* display: -webkit-flex; */
+        flex-direction: column;
+      }
+      .Sincerely {
+        margin-top: 240px;
+      }
+      .PS {
+        /* display: -webkit-flex; */
+        justify-content: center;
+        margin-top: 10px;
+      }
+      .content {
+        font-size: 13px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="huge-container">
+      <div class="container" style="margin-left: 295px;">
+        <img
+          src="https://raw.githubusercontent.com/VivekRaj2005/Assets/refs/heads/main/Logo.png"
+          alt="logo"
+          class="logo"
+        />
+      </div>
+      <div class="container">
+        <h3 style="text-align: center">Health Warriors</h3>
+      </div>
+      <div class="container">
+        <h5 style="text-align: center">Odoo X Amalthea</h5>
+      </div>
+      <div class="content">
+        <p class="salutation">Dear <b>$name</b>($aadhar),</p>
+        <div class="othercontent">
+          <p style="text-align: justify">
+            This is to inform you that the system has received your
+            appointment with <b>$drname</b>.The doctor will be contacting you shortly.
+          </p>
+        </div>
+        <br />
+        <br />
+        <div class="Sincerely">
+          Best Regards,
+          <br />
+          Health Warriors
+          <br />
+          Odoo X Amalthea
+        </div>
+        <div class="PS">
+          PS: This is a Computer Generated Document and please do not reply back.
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
