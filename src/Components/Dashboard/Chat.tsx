@@ -72,9 +72,6 @@ function Chat() {
                   ) : (
                     <></>
                   )}
-                  <h2 className="text-sm tracking-widest title-font mb-1 font-medium">
-                    Language 1
-                  </h2>
                   <h1 className="text-3xl text-gray-900 pb-4 border-b border-gray-200 leading-none">
                     ગુજરાતી,
                   </h1>
@@ -93,13 +90,9 @@ function Chat() {
                   ) : (
                     <></>
                   )}
-                  <h2 className="text-sm tracking-widest title-font mb-1 font-medium">
-                    Language 2
-                  </h2>
                   <h1 className="text-3xl text-gray-900 leading-none flex items-center pb-4 border-b border-gray-200">
                     English
                   </h1>
-             
                 </div>
               </div>
               <div className="p-4 w-full" onClick={() => setLang("2")}>
@@ -115,13 +108,9 @@ function Chat() {
                   ) : (
                     <></>
                   )}{" "}
-                  <h2 className="text-sm tracking-widest title-font mb-1 font-medium">
-                    Language 3
-                  </h2>
                   <h1 className="text-3xl text-gray-900 leading-none flex items-center pb-4 border-b border-gray-200">
                     मराठी
                   </h1>
-                 
                 </div>
               </div>
               <div className="p-4 w-full" onClick={() => setLang("3")}>
@@ -137,13 +126,9 @@ function Chat() {
                   ) : (
                     <></>
                   )}
-                  <h2 className="text-sm tracking-widest title-font mb-1 font-medium">
-                    Language 4
-                  </h2>
                   <h1 className="text-3xl text-gray-900 leading-none flex items-center pb-4 border-b border-gray-200">
                     हिन्दी
                   </h1>
-                
                 </div>
               </div>
             </div>
@@ -165,22 +150,13 @@ function Chat() {
                   return <Message model={chat} key={key} />;
                 })}
               </MessageList>
-              <div as={MessageInput}>
-                <MessageInput
-                  value={text}
-                  onChange={(e) => {
-                    settext(e);
-                  }}
-                />
-                <div className="w-full flex justify-center">
-                  <button
-                    className="flex px-10 py-5 rounded-full bg-indigo-200"
-                    onClick={GetChat}
-                  >
-                    Send
-                  </button>
-                </div>
-              </div>
+              <MessageInput
+                value={text}
+                onChange={(e) => {
+                  settext(e);
+                }}
+                onSend={GetChat}
+              />
             </ChatContainer>
           </MainContainer>
         </div>

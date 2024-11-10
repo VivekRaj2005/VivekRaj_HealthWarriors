@@ -5,33 +5,45 @@ import DrAbin from "../../assets/DRABIN J JOHNS.jpg";
 import DrSharvari from "../../assets/Sharvari.jpg";
 import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function Appointment() {
   const context: any = useOutletContext();
   const [appointment, setAppointment] = useState(false);
 
   function Appontment(doctor: string) {
-    const Data: any = {
-      name: context.user.Name,
-      email: context.user.Email,
-      doctor,
-      drEmail: "23110362@iitgn.ac.in",
-      aadhar: context.user.Aadhar,
-    };
-    var form_data = new FormData();
+    Swal.fire({
+      title: "Confirm Booking",
+      text: "Are you sure that you want to confirm booking under: " + doctor,
+      icon: "info",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Confirm it!",
+    }).then((result) => {
+      if (!result.isConfirmed) return;
+      const Data: any = {
+        name: context.user.Name,
+        email: context.user.Email,
+        doctor,
+        drEmail: "23110362@iitgn.ac.in",
+        aadhar: context.user.Aadhar,
+      };
+      var form_data = new FormData();
 
-    for (var key in Data) {
-      form_data.append(key, Data[key]);
-    }
-
-    fetch(
-      "https://script.google.com/macros/s/AKfycbyUSj-QyqhxyJ2mXbSHpgWgtj4z7D75eaWWuHNEXrHeH9Lv-a0AE1FUCROStnGTrtKpQA/exec",
-      {
-        method: "POST",
-        body: form_data,
-        mode: "no-cors",
+      for (var key in Data) {
+        form_data.append(key, Data[key]);
       }
-    ).then(() => setAppointment(true));
+
+      fetch(
+        "https://script.google.com/macros/s/AKfycbyUSj-QyqhxyJ2mXbSHpgWgtj4z7D75eaWWuHNEXrHeH9Lv-a0AE1FUCROStnGTrtKpQA/exec",
+        {
+          method: "POST",
+          body: form_data,
+          mode: "no-cors",
+        }
+      ).then(() => setAppointment(true));
+    });
   }
 
   return (
