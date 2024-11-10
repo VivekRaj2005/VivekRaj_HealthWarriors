@@ -1,0 +1,5 @@
+numpy
+pandas
+langchain_groq
+flask
+flask_cors

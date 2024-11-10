@@ -59,15 +59,32 @@ function Chat() {
         <div className="container px-5 py-5 mx-auto">
           <div className="flex flex-wrap -m-4">
             <div className="p-4 xl:w-1/4 md:w-1/2 w-full">
-              <div className="h-full p-6 rounded-lg border-2 border-gray-300 flex flex-col relative overflow-hidden">
+            <div
+                className={`h-full p-6 rounded-lg border-2 border-${
+                  lang === "4" ? "indigo" : "grey"
+                }-500 flex flex-col relative overflow-hidden`}
+              >
+                {lang === "4" ? (
+                  <span className="bg-indigo-500 text-white px-3 py-1 tracking-widest text-xs absolute right-0 top-0 rounded-bl">
+                    Selected
+                  </span>
+                ) : (
+                  <></>
+                )}
                 <h2 className="text-sm tracking-widest title-font mb-1 font-medium">
                   Language 1
                 </h2>
                 <h1 className="text-5xl text-gray-900 pb-4 mb-4 border-b border-gray-200 leading-none">
                   ગુજરાતી,
                 </h1>
-                <button className="flex items-center mt-auto text-white bg-gray-400 border-0 py-2 px-4 w-full focus:outline-none hover:bg-gray-500 rounded">
-                  Select
+                <button
+                  className={`flex items-center mt-auto text-white bg-${
+                    lang === "4" ? "indigo" : "grey"
+                  }-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-${
+                    lang === "4" ? "indigo" : "grey"
+                  }-600 rounded`}
+                >
+                  {lang === "4" ? "Selected" : "Select"}
                   <svg
                     fill="none"
                     stroke="currentColor"
@@ -80,9 +97,7 @@ function Chat() {
                     <path d="M5 12h14M12 5l7 7-7 7"></path>
                   </svg>
                 </button>
-                <p className="text-xs text-gray-500 mt-3">
-                  Literally you probably haven't heard of them jean shorts.
-                </p>
+             
               </div>
             </div>
             <div className="p-4 xl:w-1/4 md:w-1/2 w-full">

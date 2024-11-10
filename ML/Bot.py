@@ -1,10 +1,7 @@
 import numpy as np
 import pandas as pd
-import random
 import time
 from langchain_groq.chat_models import ChatGroq
-import matplotlib.pyplot as plt
-import seaborn as sns
 import os
 from flask import Flask, request
 from flask_cors import CORS, cross_origin
